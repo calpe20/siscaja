@@ -1,0 +1,31 @@
+<? $caj->listarCajaDet(1);
+echo $_GET['fecha'];
+?>
+<table width='100%'>
+    <thead>
+        <tr>
+            <th width="50px">CODIGO</th><th width="50px">TIPO</th><th width="90px">NUMERO</th>
+            <th>DESCRIPCION</th><th width="120px">INGRESOS</th>
+            <th width="120px">EGRESOS</th><th width="120px">SALDO</th><th width="20px">M</th><th width="20px">X</th>
+        </tr>
+    </thead>
+    <tbody>
+<?
+foreach ($caj->resultado as $resulta) {
+    echo '<tr>';
+    echo '<td align="center">'.$resulta['id_caja'].'</td><td align="center">'.date("d/m/Y",strtotime($resulta['tipo_doc'])).'</td>
+    <td align="right">'.$resulta['num_doc'].'</td><td align="right">'.$resulta['descrip_caja'].'</td>
+    <td align="right">'.$resulta['ingreso'].'</td><td align="right">'.$resulta['egreso'].'</td>
+    <td align="right">'.$resulta['saldo'].'</td>';
+    if($resulta['estado_caja_cab']==1){
+        echo'<td align="center"><img src="image/closed.png" title="CERRADO" width="16px"></td>
+            <td align="center"><img src="image/b_confirm.png" title="VISUALIZAR" width="16px"></td>';
+    }else{
+        echo'<td align="center"><img src="image/open.png" title="ABIERTO" width="16px"></td>
+            <td align="center"><img src="image/add.png" title="MODIFICAR" width="16px"></td>';
+    }
+    echo '</tr>';
+}
+?>
+</tbody>
+</table>

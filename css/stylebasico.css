@@ -1,0 +1,66 @@
+body{
+    margin: auto;
+    font-family: Arial;
+    font-size: 12px;
+}
+a{
+    text-decoration: none;
+}
+img{
+    border: none;
+}
+/**/
+#contenedor{
+    width: auto;
+}
+#cabecera{
+    font-family: sans-serif;
+    font-size: 14px;
+    padding: 5px;
+    background-color: #ffffcc;
+    border-bottom: 1px solid #c1c1c1;
+    text-align: center;
+}
+#menu{
+    border-bottom: 1px solid #C1C1C1;
+    padding: 2px;
+    background-color: #f1f1f1;
+    text-align: center;
+}
+#submenu{
+    border-bottom: 1px solid #C1C1C1;
+    padding: 2px;
+    background-color: #f1f1f1;
+    width: 900px;
+}
+#menu a, #submenu a{
+    padding: 2px 10px;
+    color: #000000;
+}
+#menu a:hover, #submenu a:hover{
+    background-color: #f1f1f1;
+}
+/* CUERPO */
+#cuerpo{
+    width: 900px;
+    margin: auto;
+}
+/* mensajes y otros*/
+#mensaje_error{
+    padding: 5px;
+    border: 1px solid red;
+    background-color: #f1f1f1;
+}
+#espacioblanco{
+    padding: 5px;
+}
+/*TABLAS*/
+th, td{
+    border: 1px solid #c1c1c1;
+}
+th{
+    background-color: #f1f1f1;
+}
+td{
+    color: ;
+}

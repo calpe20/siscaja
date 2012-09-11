@@ -1,0 +1,22 @@
+		<div id='menu'>
+			<a href='index.php?opt=ventas'>VENTAS</a>
+			<a href='index.php?opt=caja'>CAJA</a>
+			<a href='index.php?opt=stock'>STOCK</a>
+			<a href='index.php?opt=reportes'>REPORTES</a>
+			<a href='index.php?opt=ayuda'>AYUDA</a>
+			<a href='index.php?opt=salir'>SALIR</a>
+		</div>
+		<div id='cuerpo'>
+		    <?
+		    if(isset($_GET['opt'])){
+			$opt = $_GET['opt'];
+		    }else{
+			$opt = 'nada';
+		    }
+		    if(is_file("view/".$opt.".phtml")){
+			require_once("view/".$opt.".phtml");
+		    }else{
+			require_once("view/error.phtml");
+		    }
+		    ?>
+		</div>
