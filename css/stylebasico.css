@@ -2,6 +2,7 @@ body{
     margin: auto;
     font-family: Arial;
     font-size: 12px;
+    background-color: #ceceff;
 }
 a{
     text-decoration: none;
@@ -23,27 +24,36 @@ img{
 }
 #menu{
     border-bottom: 1px solid #C1C1C1;
-    padding: 2px;
-    background-color: #f1f1f1;
-    text-align: center;
+    background-color: #000000;
+    overflow: hidden;
+}
+#opcion1{
+    float: left;
+    padding: 5px;
+}
+#opcion2{
+    width: 80px;
+    background-color: #4a4a4a;
+    float: right;
+    padding: 5px;
 }
 #submenu{
     border-bottom: 1px solid #C1C1C1;
-    padding: 2px;
-    background-color: #f1f1f1;
-    width: 900px;
+    background-color: #363636;
+    width: 100%;
+    padding: 5px 0px;
 }
 #menu a, #submenu a{
-    padding: 2px 10px;
-    color: #000000;
-}
-#menu a:hover, #submenu a:hover{
-    background-color: #f1f1f1;
+    padding: 5px 10px;
+    color: WHITE;
 }
 /* CUERPO */
 #cuerpo{
     width: 900px;
     margin: auto;
+    background-color: white;
+    border: 1px solid #363636;
+    padding: 2px;
 }
 /* mensajes y otros*/
 #mensaje_error{

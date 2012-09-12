@@ -9,7 +9,6 @@ require 'config.php';
 </head>
 <body>
 	<div id='contenedor'>
-		<div id='cabecera'>CONTROL DE VENTAS</div>
 		<?
 		if(!isset($_SESSION['usuario'])){
 			require('view/contenedor.phtml');

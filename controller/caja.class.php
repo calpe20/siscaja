@@ -16,12 +16,30 @@ class Caja{
 	private $saldo;
 	private $usuario;
 	public 	$resultado = array();
+	public  $dia;
 	// METODOS PARA CABECERA DE CAJA
 	function buscarCaja(){
 	
 	}
 	function aperturarCaja(){
-	
+		$sql = 'select * from caja_cab';
+		$res = mysql_query($sql);
+		while($fila = mysql_fetch_array($res, MYSQL_ASSOC)){
+			echo $fila[0];
+		}
+		$dia = date("d/m/Y");
+		$sql = 'select * from caja_cab';
+		$x = 0;
+		$res = mysql_query($sql);
+		while($row = mysql_fetch_array($res, MYSQL_ASSOC)){
+			print $row[1];
+		}
+		if($x>1){
+			$this->mensaje = 'si';
+		}else{
+			$this->mensaje = 'no';
+		}
+		return $this->mensaje;
 	}
 	function modiCaja($id_caja){
 	
