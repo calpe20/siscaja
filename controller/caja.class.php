@@ -22,22 +22,20 @@ class Caja{
 	
 	}
 	function aperturarCaja(){
-		$sql = 'select * from caja_cab';
+		$dia = Date("Y-m-d");
+		$sql = "select * from caja_cab";
 		$res = mysql_query($sql);
-		while($fila = mysql_fetch_array($res, MYSQL_ASSOC)){
-			echo $fila[0];
-		}
-		$dia = date("d/m/Y");
-		$sql = 'select * from caja_cab';
 		$x = 0;
-		$res = mysql_query($sql);
-		while($row = mysql_fetch_array($res, MYSQL_ASSOC)){
-			print $row[1];
+		while($fila = mysql_fetch_array($res, MYSQL_ASSOC)){
+			if ($fila['fecha_caja_cab']==$dia){$x = $x + 1;}
+			if ($fila['estado_caja_cab']==0){$x = $x + 1;}
 		}
-		if($x>1){
-			$this->mensaje = 'si';
+		if($x > 0){
+			$this->mensaje = 'EL DIA YA FUE APERTURADO';
 		}else{
-			$this->mensaje = 'no';
+			mysql_query("insert into caja_cab (id_caja,fecha_caja_cab,estado_caja_cab,montoin_caja_cab,montoeg_caja_cab,observa_caja_cab)
+						values (NULL, '$dia',1,0.00,0.00,'')");
+			$this->mensaje = 'SE APERTURO RECIEN';
 		}
 		return $this->mensaje;
 	}

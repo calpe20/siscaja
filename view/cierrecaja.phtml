@@ -2,14 +2,12 @@
     $caj->aperturarCaja();
 ?>
 <div id='mensaje_error'><? echo $caj->mensaje;?></div>
-<div id='espacioblanco'> SI DESEA APERTURAR OTRO DIA, PRIMERO TIENE QUE CERRAR EL DIA Y SELECCIONAR EL DIA SIGUIENTE.</div>
 <form>
 <table>
     <tr>
 	<td>
             <input type="text" value="<?=date("d/m/Y");?>" readonly name="theDate">
             <input type="button" value="Calendario" onclick="displayCalendar(document.forms[0].theDate,'dd/mm/yyyy',this)">
-            <input type="submit" value="Aperturar">
         </td>
     </tr>
 </table>

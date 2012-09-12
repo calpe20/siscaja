@@ -19,17 +19,10 @@ foreach ($caj->resultado as $resulta) {
             <img src="image/b_confirm.png" title="VISUALIZAR" width="16px"></a></td>';
     }else{
         echo'<td align="center"><img src="image/open.png" title="ABIERTO" width="16px"></td>
-            <td align="center"><img src="image/add.png" title="MODIFICAR" width="16px"></td>';
+            <td align="center"><img src="image/add.pngf" title="MODIFICAR" width="16px"></td>';
     }
     echo '</tr>';
-    $dia1 = date("d/m/Y");
-    $dia2 = date("d/m/Y",strtotime($resulta['fecha_caja_cab']));
-    if ($dia2 == $dia1){
-        echo $dia1.' hola ';
-    }else{
-        echo $resulta['fecha_caja_cab'];
-    }
 }
 ?>
-</tbody>
+    </tbody>
 </table>
