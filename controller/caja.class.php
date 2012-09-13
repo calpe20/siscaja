@@ -17,9 +17,16 @@ class Caja{
 	private $usuario;
 	public 	$resultado = array();
 	public  $dia;
+	public 	$estado;
 	// METODOS PARA CABECERA DE CAJA
+	function estadoCaja($id){
+		$sql = "select * from caja_cab where id =".$id;
+		$res = mysql_fetch_array(mysql_query($sql));
+		$this->estado = $res['estado_caja_cab'];
+		return $this->estado;
+	}
 	function buscarCaja(){
-	
+		
 	}
 	function aperturarCaja(){
 		$dia = Date("Y-m-d");
@@ -27,14 +34,24 @@ class Caja{
 		$res = mysql_query($sql);
 		$x = 0;
 		while($fila = mysql_fetch_array($res, MYSQL_ASSOC)){
-			if ($fila['fecha_caja_cab']==$dia){$x = $x + 1;}
-			if ($fila['estado_caja_cab']==0){$x = $x + 1;}
+			if ($fila['fecha_caja_cab']==$dia){
+				if($fila['estado_caja_cab']==0){
+					$x = $x + 1;
+				}else{
+					$x = $x + 1;
+					$y = $y + 1; 
+				}
+			}
 		}
 		if($x > 0){
-			$this->mensaje = 'EL DIA YA FUE APERTURADO';
+			if($y < 1){
+				$this->mensaje = 'EL DIA YA FUE APERTURADO';
+			}else{
+				$this->mensaje = 'LA CAJA ESTA CERRADA DEL DIA';	
+			}
 		}else{
 			mysql_query("insert into caja_cab (id_caja,fecha_caja_cab,estado_caja_cab,montoin_caja_cab,montoeg_caja_cab,observa_caja_cab)
-						values (NULL, '$dia',1,0.00,0.00,'')");
+						values (NULL, '$dia',0,0.00,0.00,'')");
 			$this->mensaje = 'SE APERTURO RECIEN';
 		}
 		return $this->mensaje;
@@ -71,9 +88,24 @@ class Caja{
 	function eliminarCajaDet(){
 		
 	}
-	function listarCajaDet($id_caja){
+	function listarCajaDet($fecha){
+		$sql = "select * from caja_cab";
+		$res = mysql_query($sql);
+		while($fila = mysql_fetch_array($res, MYSQL_ASSOC)){
+			if ($fila['fecha_caja_cab']==$fecha){
+				$x = $fila['id_caja'];
+				$this->estado = $fila['estado_caja_cab'];
+			}
+		}
+		$sql = "SELECT * FROM caja_det where id_caja = ".$x;
+		$res = mysql_query($sql);
+		while($fila = mysql_fetch_array($res, MYSQL_ASSOC)){
+			$this->resultado[] = $fila;
+		}
+	}
+	function listarCajaDet2($id,$fecha){
 		$this->id_caja = $id_caja;
-		$sql = "select * from caja_det where id_caja=".$id_caja;
+		$sql = "SELECT * FROM caja_det WHERE id_caja=".$id;
 		$res = mysql_query($sql);
 		while($fila = mysql_fetch_array($res, MYSQL_ASSOC)){
 			$this->resultado[] = $fila;

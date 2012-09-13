@@ -15,11 +15,12 @@ foreach ($caj->resultado as $resulta) {
     <td align="right">'.$resulta['saldo'].'</td>';
     if($resulta['estado_caja_cab']==1){
         echo'<td align="center"><img src="image/closed.png" title="CERRADO" width="16px"></td>
-            <td align="center"><a href="index.php?opt='.$opt.'&menu=detallecaja&id='.$resulta['id_caja'].'&fecha='.date("d/m/Y",strtotime($resulta['fecha_caja_cab'])).'">
+            <td align="center"><a href="index.php?opt='.$opt.'&menu=detallecaja&id='.$resulta['id_caja'].'&fecha='.$resulta['fecha_caja_cab'].'">
             <img src="image/b_confirm.png" title="VISUALIZAR" width="16px"></a></td>';
     }else{
         echo'<td align="center"><img src="image/open.png" title="ABIERTO" width="16px"></td>
-            <td align="center"><img src="image/add.pngf" title="MODIFICAR" width="16px"></td>';
+            <td align="center"><a href="index.php?opt='.$opt.'&menu=detallecaja&id='.$resulta['id_caja'].'&fecha='.$resulta['fecha_caja_cab'].'">
+            <img src="image/add.png" title="MODIFICAR" width="16px"></a></td>';
     }
     echo '</tr>';
 }

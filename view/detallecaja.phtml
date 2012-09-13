@@ -1,5 +1,13 @@
-<? $caj->listarCajaDet(1);
-echo $_GET['fecha'];
+<? 
+    if(empty($_GET['fecha'])){
+        $fecha = date("Y-m-d");
+        $caj->listarCajaDet($fecha);
+    }else{
+        $id = $_GET['id'];
+        $fecha = $_GET['fecha'];
+        $caj->listarCajaDet2($id,$fecha);
+    }
+    
 ?>
 <table width='100%'>
     <thead>
@@ -13,7 +21,7 @@ echo $_GET['fecha'];
 <?
 foreach ($caj->resultado as $resulta) {
     echo '<tr>';
-    echo '<td align="center">'.$resulta['id_caja'].'</td><td align="center">'.date("d/m/Y",strtotime($resulta['tipo_doc'])).'</td>
+    echo '<td align="center">'.$resulta['id_caja'].'</td><td align="center">'.$resulta['tipo_doc'].'</td>
     <td align="right">'.$resulta['num_doc'].'</td><td align="right">'.$resulta['descrip_caja'].'</td>
     <td align="right">'.$resulta['ingreso'].'</td><td align="right">'.$resulta['egreso'].'</td>
     <td align="right">'.$resulta['saldo'].'</td>';
