@@ -18,12 +18,20 @@ class Caja{
 	public 	$resultado = array();
 	public  $dia;
 	public 	$estado;
+	public	$result = array();
+	public  $abierto;
+	public 	$row;
 	// METODOS PARA CABECERA DE CAJA
 	function estadoCaja($id){
 		$sql = "select * from caja_cab where id =".$id;
 		$res = mysql_fetch_array(mysql_query($sql));
 		$this->estado = $res['estado_caja_cab'];
 		return $this->estado;
+	}
+	function cajasAbiertas(){
+		$sql2 = "select * from caja_cab where estado_caja_cab = 0";
+		$this->result = mysql_query($sql2);
+		$this->row = mysql_fetch_row($this->result);
 	}
 	function buscarCaja(){
 		
@@ -33,26 +41,31 @@ class Caja{
 		$sql = "select * from caja_cab";
 		$res = mysql_query($sql);
 		$x = 0;
-		while($fila = mysql_fetch_array($res, MYSQL_ASSOC)){
-			if ($fila['fecha_caja_cab']==$dia){
-				if($fila['estado_caja_cab']==0){
-					$x = $x + 1;
-				}else{
-					$x = $x + 1;
-					$y = $y + 1; 
+		// CONSULTAR SI HAY CAJA ->
+		if(!$this->result){
+			while($fila = mysql_fetch_array($res, MYSQL_ASSOC)){
+				if ($fila['fecha_caja_cab']==$dia){
+					if($fila['estado_caja_cab']==0){
+						$x = $x + 1;
+					}else{
+						$x = $x + 1;
+						$y = $y + 1; 
+					}
 				}
 			}
-		}
-		if($x > 0){
-			if($y < 1){
-				$this->mensaje = 'EL DIA YA FUE APERTURADO';
+			if($x > 0){
+				if($y < 1){
+					$this->mensaje = 'EL DIA YA FUE APERTURADO';
+				}else{
+					$this->mensaje = 'LA CAJA ESTA CERRADA DEL DIA';	
+				}
 			}else{
-				$this->mensaje = 'LA CAJA ESTA CERRADA DEL DIA';	
+				mysql_query("insert into caja_cab (id_caja,fecha_caja_cab,estado_caja_cab,montoin_caja_cab,montoeg_caja_cab,observa_caja_cab)
+							values (NULL, '$dia',0,0.00,0.00,'')");
+				$this->mensaje = 'SE APERTURO RECIEN';
 			}
 		}else{
-			mysql_query("insert into caja_cab (id_caja,fecha_caja_cab,estado_caja_cab,montoin_caja_cab,montoeg_caja_cab,observa_caja_cab)
-						values (NULL, '$dia',0,0.00,0.00,'')");
-			$this->mensaje = 'SE APERTURO RECIEN';
+			$this->mensaje = 'HAY UNA CAJA APERTURADA : ';
 		}
 		return $this->mensaje;
 	}

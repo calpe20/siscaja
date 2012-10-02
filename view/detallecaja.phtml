@@ -9,6 +9,11 @@
     }
     
 ?>
+<div id='addnew'>
+    <a href="javascript:Enviar('view/cajanew.phtml','contenido')">AGREGAR</a>
+</div>
+<div id='espacioblanco'></div>
+<div id='contenido'></div>
 <table width='100%'>
     <thead>
         <tr>
@@ -26,11 +31,11 @@ foreach ($caj->resultado as $resulta) {
     <td align="right">'.$resulta['ingreso'].'</td><td align="right">'.$resulta['egreso'].'</td>
     <td align="right">'.$resulta['saldo'].'</td>';
     if($resulta['estado_caja_cab']==1){
-        echo'<td align="center"><img src="image/closed.png" title="CERRADO" width="16px"></td>
-            <td align="center"><img src="image/b_confirm.png" title="VISUALIZAR" width="16px"></td>';
+        echo'<td align="center"><img src="image/delete.png.png" title="CERRADO" width="16px"></td>
+            <td align="center"><img src="image/edit.png" title="VISUALIZAR" width="16px"></td>';
     }else{
-        echo'<td align="center"><img src="image/open.png" title="ABIERTO" width="16px"></td>
-            <td align="center"><img src="image/add.png" title="MODIFICAR" width="16px"></td>';
+        echo'<td align="center"><img src="image/delete.png" title="ABIERTO" width="16px"></td>
+            <td align="center"><img src="image/edit.png" title="MODIFICAR" width="16px"></td>';
     }
     echo '</tr>';
 }

@@ -65,6 +65,16 @@ img{
 #espacioblanco{
     padding: 5px;
 }
+#addnew a{
+    color: #000000;
+}
+#addnew{
+    padding: 2px;
+    width:100px;
+    background-color: #c1c1c1;
+    border: 1px solid #4a4a4a;
+    text-align: center;
+}
 /*TABLAS*/
 th, td{
     border: 1px solid #c1c1c1;

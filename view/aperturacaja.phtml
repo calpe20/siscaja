@@ -1,9 +1,11 @@
 <?
+    $caj->cajasAbiertas();
     $caj->aperturarCaja();
+    
 ?>
-<div id='mensaje_error'><? echo $caj->mensaje;?></div>
-<div id='espacioblanco'> SI DESEA APERTURAR OTRO DIA, PRIMERO TIENE QUE CERRAR EL DIA Y SELECCIONAR EL DIA SIGUIENTE.</div>
-<form>
+<div id='mensaje_error'><? echo $caj->mensaje."<a href=index.php?opt=caja&menu=detallecaja&id=1&fecha=".$caj->row[1].">".date("d/m/Y",strtotime($caj->row[1]))."</a>";?></div>
+<div id='espacioblanco'></div>
+<!-- <form>
 <table>
     <tr>
 	<td>
@@ -13,5 +15,5 @@
         </td>
     </tr>
 </table>
-</form>
+</form>--->
 <div id="debug"></div>
